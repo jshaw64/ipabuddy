@@ -6,6 +6,7 @@ APP_PATH=$(readlink $APP_LN)
 DEBUG=0
 VERBOSE=0
 
+DEF_PLIST_FILE=Info.plist
 DEF_BIN_SRC_PATH=${APP_PATH}/in
 DEF_BIN_DST_DIR=${APP_PATH}/out
 
@@ -91,7 +92,7 @@ parse_parms()
   config_set "$KEY_SHOW_ENTITL" $show_entitlements
   config_set "$KEY_SHOW_MOBPROV" $show_mobileprovision
 
-  config_set "$KEY_PLIST_FILE" "$DEF_PLIST"
+  config_set "$KEY_PLIST_FILE" "$DEF_PLIST_FILE"
   config_set "$KEY_BIN_SRC_PATH" "$DEF_BIN_SRC_PATH"
 }
 
