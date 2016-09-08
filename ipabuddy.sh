@@ -465,6 +465,37 @@ unpack_binary()
   task_unpack_binary "$binary_ws_dir" "$binary_ws_file" "$workspace"
 }
 
+run_tasks()
+{
+  local workspace="$1"
+  local show_all=$(config_get "$KEY_SHOW_ALL")
+
+  if [ $show_all -eq 1 ]; then
+    inspect_cfbundleversion "$workspace"
+    inspect_cfbundleshortversion "$workspace"
+    inspect_cfbundleid "$workspace"
+    inspect_entitlements "$workspace"
+  else
+    local show_cfbundleversion=$(config_get "$KEY_SHOW_CFBV")
+    local show_cfbundleshortversion=$(config_get "$KEY_SHOW_CFBSV")
+    local show_cfbundleid=$(config_get "$KEY_SHOW_CFBID")
+    local show_entitlements=$(config_get "$KEY_SHOW_ENTITL")
+    local show_mobileprovision=$(config_get "$KEY_SHOW_MOBPROV")
+
+    if [ $show_cfbundleversion -eq 1 ]; then 
+      inspect_cfbundleversion "$workspace"
+    fi
+    if [ $show_cfbundleshortversion -eq 1 ]; then
+      inspect_cfbundleshortversion "$workspace"
+    fi
+    if [ $show_cfbundleid -eq 1 ]; then
+      inspect_cfbundleid "$workspace"
+    fi
+    if [ $show_entitlements -eq 1 ]; then
+      inspect_entitlements "$workspace"
+    fi
+  fi
+}
 
 main()
 {
@@ -505,10 +536,7 @@ main()
     (( DEBUG || VERBOSE )) && printf "\tBinary Source Path [$bin_src_path_abs]\n"
     (( DEBUG || VERBOSE )) && printf "\tBinary Source Dir [$bin_src_dir_abs]\n"
     unpack_binary "$binary_file_path" "$workspace"
-    inspect_cfbundleversion "$workspace"
-    inspect_cfbundleshortversion "$workspace"
-    inspect_cfbundleid "$workspace"
-    inspect_entitlements "$workspace"
+    run_tasks "$workspace"
 
   done
 
