@@ -363,8 +363,6 @@ inspect_cfbundleversion()
   fs_is_valid_file "$payload_dir_app" "$plist_src_file"
   (( $? > 0 )) && exit $E_PLIST
   local plist_ws_path="${payload_dir_app}/${plist_src_file}"
-  local app_id=$(config_get "$KEY_APP_ID")
-  local version=$(config_get "$KEY_VERSION")
 
   (( DEBUG || VERBOSE )) && printf "\tPayload App Dir [$payload_dir_app]\n"
   (( DEBUG || VERBOSE )) && printf "\tPlist File [$plist_src_file]\n"
@@ -387,8 +385,6 @@ inspect_cfbundleshortversion()
   fs_is_valid_file "$payload_dir_app" "$plist_src_file"
   (( $? > 0 )) && exit $E_PLIST
   local plist_ws_path="${payload_dir_app}/${plist_src_file}"
-  local app_id=$(config_get "$KEY_APP_ID")
-  local version=$(config_get "$KEY_VERSION")
 
   (( DEBUG || VERBOSE )) && printf "\tPayload App Dir [$payload_dir_app]\n"
   (( DEBUG || VERBOSE )) && printf "\tPlist File [$plist_src_file]\n"
@@ -411,8 +407,6 @@ inspect_cfbundleid()
   fs_is_valid_file "$payload_dir_app" "$plist_src_file"
   (( $? > 0 )) && exit $E_PLIST
   local plist_ws_path="${payload_dir_app}/${plist_src_file}"
-  local app_id=$(config_get "$KEY_APP_ID")
-  local version=$(config_get "$KEY_VERSION")
 
   (( DEBUG || VERBOSE )) && printf "\tPayload App Dir [$payload_dir_app]\n"
   (( DEBUG || VERBOSE )) && printf "\tPlist File [$plist_src_file]\n"
