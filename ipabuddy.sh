@@ -28,7 +28,8 @@ E_SIG=54
 usage()
 {
   cat <<EOF
-Usage: ipabuddy [ -v <cfbundleversion> | -V <cfbundleshortversion> | -i <cfbundleid> | -e <enitlements> | -p <mobile provision> | -dh ]
+Usage: ipabuddy [ -b <source bin> | -v <cfbundleversion> | -V <cfbundleshortversion> | -i <cfbundleid> | -e <enitlements> | -p <mobile provision> | -dzh ]
+-b  Source Binary
 -v  Show CFBundleVersion
 -V  Show CFBundleShortVersion
 -i  Show CFBundleId
@@ -36,11 +37,13 @@ Usage: ipabuddy [ -v <cfbundleversion> | -V <cfbundleshortversion> | -i <cfbundl
 -p  Show Mobile Provisioning Profile
 -h  Show help
 -d  Toggle debug
+-z  Toggle verbose
 EOF
 }
 
 parse_parms()
 {
+  local bin_src_path="$DEF_BIN_SRC_PATH"
   local show_cfbundleversion=0
   local show_cfbundleshortversion=0
   local show_cfbundleid=0
@@ -49,7 +52,7 @@ parse_parms()
   local show_all=0
 
   local OPTIND=1
-  while getopts "vViepabdh" opt; do
+  while getopts "b:vViepadzh" opt; do
     case "$opt" in
       h )
         usage
@@ -58,8 +61,11 @@ parse_parms()
       d )
         DEBUG=1
         ;;
-      b )
+      z )
         VERBOSE=1
+        ;;
+      b )
+        bin_src_path=${OPTARG}
         ;;
       v )
         show_cfbundleversion=1
@@ -86,6 +92,7 @@ parse_parms()
     esac
   done
 
+  config_set "$KEY_BIN_SRC_PATH" "$bin_src_path"
   config_set "$KEY_SHOW_CFBV" $show_cfbundleversion
   config_set "$KEY_SHOW_CFBSV" $show_cfbundleshortversion
   config_set "$KEY_SHOW_CFBID" $show_cfbundleid
