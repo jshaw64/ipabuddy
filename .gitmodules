@@ -1,0 +1,9 @@
+[submodule "lib/config"]
+	path = lib/config
+	url = git@github.com:jshaw64/sh-config.git
+[submodule "lib/ipautils"]
+	path = lib/ipautils
+	url = git@github.com:jshaw64/sh-ipautils.git
+[submodule "lib/fsutils"]
+	path = lib/fsutils
+	url = git@github.com:jshaw64/sh-fsutils.git
