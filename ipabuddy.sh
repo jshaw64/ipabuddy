@@ -108,7 +108,7 @@ inspect_cfbundleversion()
 {
   local workspace="$1"
 
-  echo "Running Task: Modify Plist"
+  echo "Inspecting CFBundleShortVersion"
 
   local payload_dir_app=$(fs_get_files_for_filter "${workspace}/Payload/*")
   fs_is_valid_dir "$payload_dir_app"
@@ -130,7 +130,7 @@ inspect_cfbundleshortversion()
 {
   local workspace="$1"
 
-  echo "Running Task: Modify Plist"
+  echo "Inspecting CFBundleVersion..."
 
   local payload_dir_app=$(fs_get_files_for_filter "${workspace}/Payload/*")
   fs_is_valid_dir "$payload_dir_app"
@@ -152,7 +152,7 @@ inspect_cfbundleid()
 {
   local workspace="$1"
 
-  echo "Running Task: Modify Plist"
+  echo "Inspecting CFBundleId..."
 
   local payload_dir_app=$(fs_get_files_for_filter "${workspace}/Payload/*")
   fs_is_valid_dir "$payload_dir_app"
@@ -174,7 +174,7 @@ inspect_entitlements()
 {
   local workspace="$1"
 
-  echo "Running Task: Modify Plist"
+  echo "Inspecting entitlements..."
 
   local payload_dir_app=$(fs_get_files_for_filter "${workspace}/Payload/*")
   fs_is_valid_dir "$payload_dir_app"
@@ -190,7 +190,7 @@ inspect_mobileprovision()
 {
   local workspace="$1"
 
-  echo "Running Task: Modify Plist"
+  echo "Inspecting .mobileprovision..."
 
   local payload_dir_app=$(fs_get_files_for_filter "${workspace}/Payload/*")
   fs_is_valid_dir "$payload_dir_app"
