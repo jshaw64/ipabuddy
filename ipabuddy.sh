@@ -428,7 +428,7 @@ inspect_entitlements()
 
   (( DEBUG || VERBOSE )) && printf "\tPayload App Dir [$payload_dir_app]\n"
 
-  local entitlements=$(get_entitlements "$payload_dir_app")
+  local entitlements=$(print_entitlements "$payload_dir_app")
   echo "$entitlements"
 }
 
