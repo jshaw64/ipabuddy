@@ -28,19 +28,14 @@ E_SIG=54
 usage()
 {
   cat <<EOF
-Usage: resignme [ -p <plist> | -P <prov prof> | -e <entitlements> | -b <bin src> | -B <bin dst> | -t <team id> | -s <sign id> | -a <app id> | -V <version> | -dv ]
--p  Plist (file name)
--P  Provisioning Profile (file path)
--e  Entitlements (file path)
--b  Binary Source (file path or directory)
--B  Binary Destination (directory)
--t  Team ID
--s  Sign ID
--a  App ID
--V  Version
+Usage: ipabuddy [ -v <cfbundleversion> | -V <cfbundleshortversion> | -i <cfbundleid> | -e <enitlements> | -p <mobile provision> | -dh ]
+-v  Show CFBundleVersion
+-V  Show CFBundleShortVersion
+-i  Show CFBundleId
+-e  Show Entitlements
+-p  Show Mobile Provisioning Profile
 -h  Show help
 -d  Toggle debug
--v  Toggle verbose
 EOF
 }
 
