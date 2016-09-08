@@ -438,6 +438,28 @@ inspect_entitlements()
   echo "$entitlements"
 }
 
+inspect_mobileprovision()
+{
+  local workspace="$1"
+
+  echo "Running Task: Modify Plist"
+
+  local payload_dir_app=$(fs_get_files_for_filter "${workspace}/Payload/*")
+  fs_is_valid_dir "$payload_dir_app"
+  (( $? > 0 )) && exit $E_PAYLOAD
+  local mobile_prov_file="embedded.mobileprovision"
+  local mobile_prov_path="${payload_dir_app}/${mobile_prov_file}"
+# why doesn't this work?
+#  fs_is_valid_file "$payload_dir_app" "$mobile_prov_path"
+#  (( $? > 0 )) && exit $E_MOBILE_PROV
+
+  (( DEBUG || VERBOSE )) && printf "\tPayload App Dir [$payload_dir_app]\n"
+
+  local mobileprovision=$(print_mobileprovision "$mobile_prov_path")
+  echo "$mobileprovision"
+}
+
+
 unpack_binary()
 {
   local binary_file_path="$1"
@@ -475,6 +497,7 @@ run_tasks()
     inspect_cfbundleshortversion "$workspace"
     inspect_cfbundleid "$workspace"
     inspect_entitlements "$workspace"
+    inspect_mobileprovision "$workspace"
   else
     local show_cfbundleversion=$(config_get "$KEY_SHOW_CFBV")
     local show_cfbundleshortversion=$(config_get "$KEY_SHOW_CFBSV")
@@ -493,6 +516,9 @@ run_tasks()
     fi
     if [ $show_entitlements -eq 1 ]; then
       inspect_entitlements "$workspace"
+    fi
+    if [ $show_mobileprovision -eq 1 ]; then
+      inspect_mobileprovision "$workspace"
     fi
   fi
 }
