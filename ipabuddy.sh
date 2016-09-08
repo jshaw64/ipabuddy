@@ -15,6 +15,7 @@ KEY_SHOW_CFBSV="show_cfbvs"
 KEY_SHOW_CFBID="show_cfbid"
 KEY_SHOW_ENTITL="show_entitl"
 KEY_SHOW_MOBPROV="show_mobprov"
+KEY_SHOW_ALL="show_all"
 KEY_PLIST_FILE="plist"
 KEY_BIN_SRC_PATH="bin_src_path"
 
@@ -50,9 +51,10 @@ parse_parms()
   local show_cfbundleid=0
   local show_entitlements=0
   local show_mobileprovision=0
+  local show_all=0
 
   local OPTIND=1
-  while getopts "bBiepvdh" opt; do
+  while getopts "vViepabdh" opt; do
     case "$opt" in
       h )
         usage
@@ -61,13 +63,13 @@ parse_parms()
       d )
         DEBUG=1
         ;;
-      v )
+      b )
         VERBOSE=1
         ;;
-      b )
+      v )
         show_cfbundleversion=1
         ;;
-      B )
+      V )
         show_cfbundleshortversion=1
         ;;
       i )
@@ -78,6 +80,9 @@ parse_parms()
         ;;
       p )
         show_mobileprovision=1
+        ;;
+      a )
+        show_all=1
         ;;
       * )
         usage
@@ -91,6 +96,7 @@ parse_parms()
   config_set "$KEY_SHOW_CFBID" $show_cfbundleid
   config_set "$KEY_SHOW_ENTITL" $show_entitlements
   config_set "$KEY_SHOW_MOBPROV" $show_mobileprovision
+  config_set "$KEY_SHOW_ALL" $show_all
 
   config_set "$KEY_PLIST_FILE" "$DEF_PLIST_FILE"
   config_set "$KEY_BIN_SRC_PATH" "$DEF_BIN_SRC_PATH"
