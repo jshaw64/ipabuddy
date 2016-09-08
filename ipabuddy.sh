@@ -219,7 +219,7 @@ unpack_binary()
 
   (( DEBUG || VERBOSE )) && printf "\tBinary Source Dir [$binary_src_dir]\n"
   (( DEBUG || VERBOSE )) && printf "\tBinary File [$binary_file]\n"
-  task_copy_binary_ws "$binary_src_dir" "$binary_file" "$workspace"
+  fs_copy_file "$binary_src_dir" "$workspace" "$binary_file" "$binary_file"
 
   echo "Running task: Unpack Binary"
 
@@ -231,7 +231,7 @@ unpack_binary()
 
   (( DEBUG || VERBOSE )) && printf "\tBinary Dir: [$binary_ws_dir]\n"
   (( DEBUG || VERBOSE )) && printf "\tBinary File: [$binary_ws_file]\n"
-  task_unpack_binary "$binary_ws_dir" "$binary_ws_file" "$workspace"
+  fs_unzip "$binary_ws_dir" "$binary_ws_file" "$workspace"
 }
 
 run_tasks()
