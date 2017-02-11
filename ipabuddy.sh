@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APP_LN=/usr/local/bin/ipabuddy
-APP_PATH=$(readlink $APP_LN)
+APP_PATH=$(dirname $(readlink $APP_LN))
 
 DEBUG=0
 VERBOSE=0
