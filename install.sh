@@ -1,9 +1,12 @@
 #! /usr/bin/env bash
 
+DEF_IPABUDDY_ROOT="$( pwd )"
+
+ipabuddy_root="${1:-$DEF_IPABUDDY_ROOT}"
+
 (
-install_dir=$(pwd)
 [ ! -d /usr/local/bin ] && mkdir /usr/local/bin
 cd /usr/local/bin
-ln -s ${install_dir}/ipabuddy.sh ipabuddy
+[ -L /usr/local/bin/ipabuddy ] && rm -rf /usr/local/bin/ipabuddy
+ln -s ${ipabuddy_root}/ipabuddy.sh ipabuddy
 )
-
